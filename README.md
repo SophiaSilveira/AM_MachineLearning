@@ -22,6 +22,13 @@ Conjuntos sugestão:
 1º https://www.kaggle.com/datasets/erdemtaha/cancer-data/data
 - Tipos de cancer, educar um modelo para preizer qual cancer ou se é maligno ou benigno
   
-2º
-
+2º https://www.kaggle.com/datasets/rounakbanik/pokemon
+Treinar modelo para predizer se o pokemon é lendário:
+- capture_rate
+- base_egg_steps?
+- abilities?
+- experience_grouwth:
+- hp
+- attack
+- defens
 3º
