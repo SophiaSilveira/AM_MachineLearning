@@ -1,2 +1,27 @@
 # AM_MachingLearning
 A repository for the class of Maching Learning
+
+31/08/2025 
+- Primeira reunião, sugestão de conjunto de dados.
+
+Plataformas
+https://archive.ics.uci.edu/
+https://www.kaggle.com/datasets
+https://datasetsearch.research.google.com/
+
+O dataset deve:
+- ter um número razoável de features (pelo menos 5) para permitir a análise de
+importância de features;
+- resolver um problema de classificação, ou seja, a variável a ser predita deve ser
+categórica.
+- O conjunto de dados deve incluir tanto variáveis numéricas quanto categóricas, e deve
+ser suficientemente grande para permitir uma análise significativa (pelo menos 100
+instâncias)
+
+Conjuntos sugestão:
+1º https://www.kaggle.com/datasets/erdemtaha/cancer-data/data
+- Tipos de cancer, educar um modelo para preizer qual cancer ou se é maligno ou benigno
+  
+2º
+
+3º
