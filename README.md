@@ -23,6 +23,7 @@ Conjuntos sugestão:
 - Tipos de cancer, educar um modelo para preizer qual cancer ou se é maligno ou benigno
   
 2º https://www.kaggle.com/datasets/rounakbanik/pokemon
+
 Treinar modelo para predizer se o pokemon é lendário:
 - capture_rate
 - base_egg_steps?
@@ -31,4 +32,13 @@ Treinar modelo para predizer se o pokemon é lendário:
 - hp
 - attack
 - defens
-3º
+
+3º https://www.kaggle.com/datasets/poushal02/student-academic-stress-real-world-dataset 
+
+Conjunto de dados relacionados ao estresse academico, podemos criar um modelo para tentar prever se o ambiente de estudo é: noisy, peaceful, disrupted baseado nas features abaixo:
+
+ - Peer Pressure -> Influencia dos colegas impulsionada pela competição, competição e expectativas
+ - Academic Pressure from Home	-> Pressão causada pelos pais
+ - Coping Strategy	-> Métodos que os alunos lidam com o estresse
+ - Bad Habits	-> Maus hábitos como fumar, beber...
+ - Academic Competition -> Competição entre os pares
