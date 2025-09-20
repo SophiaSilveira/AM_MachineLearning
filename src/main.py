@@ -1,20 +1,20 @@
+######################### Libraries Import #########################
 import pandas as pd
 from sklearn.preprocessing import OrdinalEncoder
 from sklearn.model_selection import train_test_split
 
+######################### Learning Models Import #########################
+from dt import runDT
+
+######################### pre-processing #########################
 # Carregar o dataset
-df = pd.read_csv("../academic-stress-level.csv", sep=';')
-print(df.columns)
+df = pd.read_csv("./academic-stress-level.csv", sep=';')
+
 # Remover a coluna Timestamp
 df = df.drop(columns=["Timestamp"])
 
 # Remover linhas com valores vazios
 df = df.dropna(subset=["Study Environment"])
-
-print("Your Academic Stage:", df["Your Academic Stage"].unique())
-print("Study Environment:", df["Study Environment"].unique())
-print("Coping strategy:", df["What coping strategy you use as a student?"].unique())
-print("Bad habits:", df["Do you have any bad habits like smoking, drinking on a daily basis?"].unique())
 
 # Definir a ordem dos valores manualmente
 categories = [
@@ -44,9 +44,10 @@ df_encoded[[
     "Do you have any bad habits like smoking, drinking on a daily basis?"
 ]]) + 1
 
-
-
+######################### Result file of pre-processing #########################
 #df_encoded.to_csv("academic-stress-level-encoded.csv", index=False)
+
+######################### Separetion Data - Treining/Testing #########################
 # Supondo que a coluna alvo seja 'Rate your academic stress index'
 X = df_encoded.drop(columns=["Rate your academic stress index"])
 y = df_encoded["Rate your academic stress index"]
@@ -56,4 +57,5 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, shuffle=True
 )
 
-print(df_encoded.head())
+######################### Call Learning Models #########################
+runDT(X_train, X_test, y_train, y_test)
