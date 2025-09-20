@@ -18,7 +18,8 @@
         - Variaveís categóricas - será usado valore inteiros iniciados em 1 até o fim das categorias, 1 sempre será considerado o pior caso ou o que vem primeiro(no caso da escolaridade);
          1. Your Academic Stage -> 1(high school), 2(undergraduate), 3(post-graduate)
          2. Study Environment ->  1(Noisy), 2(disrupted), 3(Peaceful)
-         3. What coping strategy you use as a student? -> 1(No), 2(prefer not to say), 3(Yes)
+         3. What coping strategy you use as a student? -> 1(Emotional breakdown (crying a lot)), 2(Social support (friends, family)), 3(Analyze the situation and handle it with intellect)
+         4. Do you have any bad habits like smoking, drinking on a daily basis? -> 1(No), 2(prefer not to say), 3(Yes)
   - [v] Divisão do dataset em treino e teste (80/20 ou 70/30)
   - [ ] Treinar modelos:  
     - [ ] KNN  
