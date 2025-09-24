@@ -5,6 +5,8 @@ from sklearn.model_selection import train_test_split
 
 ######################### Learning Models Import #########################
 from dt import runDT
+from knn import runKNN
+from naive import runNaive
 
 ######################### pre-processing #########################
 # Carregar o dataset
@@ -58,4 +60,13 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 ######################### Call Learning Models #########################
+print("########### Decision Tree ##########")
 runDT(X_train, X_test, y_train, y_test)
+
+print("\n\n")
+print("########### KNN ##########")
+runKNN(X_train, X_test, y_train, y_test)
+
+print("\n\n")
+print("########### Naive bayes ##########")
+runNaive(X_train, X_test, y_train, y_test)
