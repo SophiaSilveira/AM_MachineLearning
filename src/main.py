@@ -18,6 +18,37 @@ df_asl = df_asl.drop(columns=["Timestamp"])
 # Remover linhas com valores vazios
 df_asl = df_asl.dropna(subset=["Study Environment"])
 
+df_mht = df_mht.drop(columns=["User_ID"])
+
+
+categories_mht = [
+    ["Female", "Male", "Other"],
+    ["Excellent", "Fair", "Good", "Poor"],
+    ["High", "Medium", "Low"],
+    ["Yes", "No"],
+    ["Positive", "Neutral", "Negative"],
+    ["Yes", "No"]
+]
+encoder_mht = OrdinalEncoder(categories=categories_mht)
+df_encoded_mht = df_mht.copy()
+df_encoded_mht[[
+    "Gender",
+    "Mental_Health_Status",
+    "Stress_Level",
+    "Support_Systems_Access",
+    "Work_Environment_Impact",
+    "Online_Support_Usage"
+]] = encoder_mht.fit_transform(df_mht[[
+    "Gender",
+    "Mental_Health_Status",
+    "Stress_Level",
+    "Support_Systems_Access",
+    "Work_Environment_Impact",
+    "Online_Support_Usage"
+]]) + 1
+
+
+
 # Definir a ordem dos valores manualmente
 categories = [
     ["high school", "undergraduate", "post-graduate"],   # Your Academic Stage
@@ -30,6 +61,8 @@ categories = [
      "Yes"
     ]
 ]
+
+
 
 encoder = OrdinalEncoder(categories=categories)
 
@@ -69,4 +102,15 @@ runKNN(X_train, X_test, y_train, y_test)
 
 print("\n\n")
 print("########### Naive bayes ##########")
-runNaive(df)
+#runNaive(df)
+
+print("\n\n")
+X_mht = df_encoded_mht.drop(columns=["Mental_Health_Status"])
+y_mht = df_encoded_mht["Mental_Health_Status"]
+X_train_mht, X_test_mht, y_train_mht, y_test_mht = train_test_split(
+    X, y, test_size=0.2, random_state=42, shuffle=True
+)
+
+print("Novo datase")
+
+runDT(X_train_mht, X_test_mht, y_train_mht, y_test_mht)
