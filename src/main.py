@@ -10,13 +10,13 @@ from naive import runNaive
 
 ######################### pre-processing #########################
 # Carregar o dataset
-df = pd.read_csv("./academic-stress-level.csv", sep=';')
-
+df_asl = pd.read_csv("./academic-stress-level.csv", sep=';')
+df_mht = pd.read_csv("./mental_health_and_technology_usage_2024.csv")
 # Remover a coluna Timestamp
-df = df.drop(columns=["Timestamp"])
+df_asl = df_asl.drop(columns=["Timestamp"])
 
 # Remover linhas com valores vazios
-df = df.dropna(subset=["Study Environment"])
+df_asl = df_asl.dropna(subset=["Study Environment"])
 
 # Definir a ordem dos valores manualmente
 categories = [
@@ -33,13 +33,13 @@ categories = [
 
 encoder = OrdinalEncoder(categories=categories)
 
-df_encoded = df.copy()
+df_encoded = df_asl.copy()
 df_encoded[[
     "Your Academic Stage",
     "Study Environment",
     "What coping strategy you use as a student?",
     "Do you have any bad habits like smoking, drinking on a daily basis?"
-]] = encoder.fit_transform(df[[
+]] = encoder.fit_transform(df_asl[[
     "Your Academic Stage",
     "Study Environment",
     "What coping strategy you use as a student?",
@@ -69,4 +69,4 @@ runKNN(X_train, X_test, y_train, y_test)
 
 print("\n\n")
 print("########### Naive bayes ##########")
-runNaive(X_train, X_test, y_train, y_test)
+runNaive(df)
