@@ -11,7 +11,7 @@
   - [v] Não pode ser dataset já usado em aula (Iris, Titanic, Adult, Breast Cancer, Wine Quality, etc.)
 
 - [ ] **2. Treinamento dos Modelos**
-  - [ ] Pré-processamento dos dados  
+  - [v] Pré-processamento dos dados  
     - [V] Tratamento de valores ausentes  -> 1 valor ausente campo Study Environment, removido pois representa menos de 5% das instâncias
     - [v] Normalização  -> Não há dados fora do padrão nas features
     - [v] Codificação de variáveis categóricas 
@@ -21,16 +21,17 @@
          3. What coping strategy you use as a student? -> 1(Emotional breakdown (crying a lot)), 2(Social support (friends, family)), 3(Analyze the situation and handle it with intellect)
          4. Do you have any bad habits like smoking, drinking on a daily basis? -> 1(No), 2(prefer not to say), 3(Yes)
   - [v] Divisão do dataset em treino e teste (80/20 ou 70/30)
-  - [ ] Treinar modelos:  
-    - [ ] KNN  
-    - [ ] Naïve Bayes  
-    - [ ] Árvore de Decisão  
+  - [v] Treinar modelos:  
+    - [v] KNN  
+    - [v] Naïve Bayes  
+    - [v] Árvore de Decisão  
   - [ ] Avaliar desempenho dos modelos com métricas:  
-    - [ ] Acurácia  
-    - [ ] Precisão  
-    - [ ] Recall  
-    - [ ] F1-score  
-  - [ ] Justificar escolhas de pré-processamento e treinamento
+    - [ ] Acurácia  - entre 0.7 e 0.95
+    - [ ] Precisão  - ente 0.6 e 0.95
+    - [ ] Recall  - ente 0.6 e 0.95
+    - [ ] F1-score  - ente 0.6 e 0.90
+  - [v] Justificar escolhas de pré-processamento  
+  - [ ] Justificar escolhas de treinamento
   - [ ] Garantir performance suficiente para análise de interpretabilidade
 
 - [ ] **3. Interpretabilidade dos Modelos**
