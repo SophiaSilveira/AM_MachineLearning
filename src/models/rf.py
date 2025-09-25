@@ -10,8 +10,7 @@ def runRF(X_train, X_test, y_train, y_test):
         "min_samples_split": [4],       # mínimo de amostras para dividir
         "min_samples_leaf": [1],        # mínimo de amostras em uma folha
         "class_weight": [None], # lida com classes desbalanceadas
-        "max_features" : [None],
-        "max_leaf_node" : [None]
+        "max_features" : [None]
     }
 
     # Modelo base
@@ -40,9 +39,11 @@ def runRF(X_train, X_test, y_train, y_test):
     y_pred = best_rf.predict(X_test)
 
     # Métricas
-    print("Métricas do modelo RandomForest:\n")
-    print(classification_report(y_test, y_pred, zero_division=0))
     print(f"Acurácia: {accuracy_score(y_test, y_pred):.4f}")
     print(f"Precisão: {precision_score(y_test, y_pred, average='weighted', zero_division=0):.4f}")
     print(f"Recall: {recall_score(y_test, y_pred, average='weighted', zero_division=0):.4f}")
     print(f"F1-score: {f1_score(y_test, y_pred, average='weighted', zero_division=0):.4f}")
+
+    print("\nRelatório detalhado por classe:\n")
+    print(classification_report(y_test, y_pred, zero_division=0))
+
