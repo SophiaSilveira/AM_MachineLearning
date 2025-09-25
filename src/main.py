@@ -121,9 +121,10 @@ y_mht = df_encoded_mht["Mental_Health_Status"]
 
 # Divisão 80% treino / 20% teste
 X_train_mht, X_test_mht, y_train_mht, y_test_mht = train_test_split(
-    X, y, test_size=0.2, random_state=42, shuffle=True
+    X_mht, y_mht, test_size=0.2, random_state=42, shuffle=True, stratify=y_mht
 )
 
+######################### Call Learning Models #########################
 print("Dataset: mental_health_and_technology_usage_2024")
 
 print("########### Decision Tree ##########")

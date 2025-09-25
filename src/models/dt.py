@@ -6,14 +6,14 @@ def runDT(X_train, X_test, y_train, y_test):
     # Definição da grade de parâmetros
 
     param_grid = {
-        "criterion": ["gini","entropy"],                  # medida de qualidade da divisão - "gini", 
-        "splitter": ["random", "best"],                   # estratégia de divisão - "best", 
+        "criterion": ["gini", "entropy", "log_loss"],
+        "splitter": ["best", "random"],
 
-        "max_features": [None],                 # nº de atributos considerados - "sqrt", "log2",
-        "max_depth": [5],                       # profundidade máxima
-        "max_leaf_nodes": [10, 12],               # número máximo de folhas - None - ,12
+        "max_features": [None, "sqrt", "log2"],
+        "max_depth": [None, 5, 10, 15],                       # profundidade máxima
+        "max_leaf_nodes": [None, 10, 20, 50],               # número máximo de folhas - None - ,12
 
-        "min_samples_split": [2,4],               # mínimo de amostras para dividir um nó
+        "min_samples_split": [2, 5, 10],               # mínimo de amostras para dividir um nó
         "min_samples_leaf": [1],                # mínimo de amostras em uma folha - ,2,3,4
         "min_weight_fraction_leaf": [0.0],      # fração mínima de peso em uma folha
         "min_impurity_decrease": [0.0],         # impureza mínima p/ dividir
@@ -29,7 +29,7 @@ def runDT(X_train, X_test, y_train, y_test):
     clf = tree.DecisionTreeClassifier(random_state=42)
 
     # GridSearch com validação cruzada
-    grid = GridSearchCV(clf, param_grid, cv=4, scoring="f1_weighted", n_jobs=-1)
+    grid = GridSearchCV(clf, param_grid, cv=5, scoring="f1_weighted", n_jobs=-1) #valores 5 ou 10
     grid.fit(X_train, y_train)
 
     # Melhor modelo encontrado
