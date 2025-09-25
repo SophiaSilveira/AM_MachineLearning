@@ -9,7 +9,7 @@ from models.dt import runDT
 #from models.naive import runNaive
 from models.rf import runRF
 
-######################### Start - pre-processing  Academic Stress -> Try 1#########################
+######################### Start - pre-processing  Academic Stress -> Try 1 #########################
 # Carregar o dataset
 df_asl = pd.read_csv("./database/academic-stress-level.csv", sep=';')
 
@@ -77,7 +77,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 #runRF(X_train, X_test, y_train, y_test)
 
 
-######################### Start - pre-processing  Mental Health -> Try 2#########################
+######################### Start - pre-processing  Mental Health -> Try 2 #########################
 
 # Carregar o dataset
 df_mht = pd.read_csv("./database/mental_health_and_technology_usage_2024.csv")
