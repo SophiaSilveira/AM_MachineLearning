@@ -5,8 +5,8 @@ from sklearn.model_selection import train_test_split
 
 ######################### Learning Models Import #########################
 from models.dt import runDT
-#from models.knn import runKNN
-#from models.naive import runNaive
+from models.knn import runKNN, runKNNBase2
+from models.naive import runNaive
 from models.rf import runRF
 
 ######################### Start - pre-processing  Academic Stress -> Try 1 #########################
@@ -71,7 +71,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 #print("\n\n")
 #print("########### Naive bayes ##########")
-#runNaive(df)
+#runNaive(X_train, X_test, y_train, y_test)
 
 #print("########### Ramdom Forest ##########")
 #runRF(X_train, X_test, y_train, y_test)
@@ -144,5 +144,9 @@ X_train_mht, X_test_mht, y_train_mht, y_test_mht = train_test_split(
 ######################### Call Learning Models #########################
 #print("Dataset: mental_health_and_technology_usage_2024")
 
-print("########### Decision Tree ##########")
-runDT(X_train_mht, X_test_mht, y_train_mht, y_test_mht)
+#print("########### Decision Tree ##########")
+#runDT(X_train_mht, X_test_mht, y_train_mht, y_test_mht)
+
+#print("\n\n")
+#print("########### KNN ##########")
+runKNNBase2(X_train_mht, X_test_mht, y_train_mht, y_test_mht)
