@@ -6,24 +6,22 @@ def runDT(X_train, X_test, y_train, y_test):
     # Definição da grade de parâmetros
 
     param_grid = {
-        "criterion": ["gini", "entropy", "log_loss"],
-        "splitter": ["best", "random"],
+        "criterion": ["gini"],          #"entropy",  "log_loss", 
+        "splitter": ["random"],         #"best", 
+        "max_features": [None],          #"sqrt", "log2"
+        "max_depth": [13],                 #20, 15,13,12,10,5, none
+        "max_leaf_nodes": [None],           #,10,12, 20, 50,100,150,200
 
-        "max_features": [None, "sqrt", "log2"],
-        "max_depth": [None, 5, 10, 15],                       # profundidade máxima
-        "max_leaf_nodes": [None, 10, 20, 50],               # número máximo de folhas - None - ,12
+        "min_samples_split": [2],                # 2,4,5,10
+        "min_samples_leaf": [1],                  #1, 3,4
+        "min_weight_fraction_leaf": [0.0],              # ,0.1, 
+        "min_impurity_decrease": [0.0],           # ,  0.01, 0.01
 
-        "min_samples_split": [2, 5, 10],               # mínimo de amostras para dividir um nó
-        "min_samples_leaf": [1],                # mínimo de amostras em uma folha - ,2,3,4
-        "min_weight_fraction_leaf": [0.0],      # fração mínima de peso em uma folha
-        "min_impurity_decrease": [0.0],         # impureza mínima p/ dividir
-
-        "random_state": [None],                   # semente p/ reprodutibilidade - 42, 
-        "class_weight": [None, "balanced"],                 # pesos das classes -  classe1:1, classe2:5
-        "ccp_alpha": [0.0],                     # parâmetro de poda (complexity pruning)
-        "monotonic_cst": [None]                 # restrições de monotonicidade
+        "random_state": [42],                           # None, 0, 42,
+        "class_weight": [None, "balanced"],
+        "ccp_alpha": [0.0], #, 
+        "monotonic_cst": [None]
     }
-
 
     # Modelo base
     clf = tree.DecisionTreeClassifier(random_state=42)

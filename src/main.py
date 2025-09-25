@@ -94,31 +94,45 @@ categories_mht = [
 
 # Montando dataset pós pre-processing
 encoder_mht = OrdinalEncoder(categories=categories_mht)
+
+# Copiar para não alterar o original
 df_encoded_mht = df_mht.copy()
-df_encoded_mht[[
+
+# Features categóricas (sem incluir o target)
+categorical_features = [
     "Gender",
-    "Mental_Health_Status",
     "Stress_Level",
     "Support_Systems_Access",
     "Work_Environment_Impact",
     "Online_Support_Usage"
-]] = encoder_mht.fit_transform(df_mht[[
-    "Gender",
-    "Mental_Health_Status",
-    "Stress_Level",
-    "Support_Systems_Access",
-    "Work_Environment_Impact",
-    "Online_Support_Usage"
-]]) + 1
+]
+
+# Definir categorias apenas para features
+categories_mht = [
+    ["Female", "Male", "Other"],
+    ["High", "Medium", "Low"],
+    ["Yes", "No"],
+    ["Positive", "Neutral", "Negative"],
+    ["Yes", "No"]
+]
+
+# Aplicar encoder apenas nas features
+encoder_mht = OrdinalEncoder(categories=categories_mht)
+df_encoded_mht[categorical_features] = encoder_mht.fit_transform(df_mht[categorical_features]) + 1
+
+# Supondo que a coluna alvo seja 'Mental_Health_Status'
+# O target continua como estava, só será usado em y_mht
+X_mht = df_encoded_mht.drop(columns=["Mental_Health_Status"])
+y_mht = df_mht["Mental_Health_Status"]   # <- target original, não encodado
+
+target_encoder = OrdinalEncoder(categories=[["Excellent", "Fair", "Good", "Poor"]])
+y_mht = target_encoder.fit_transform(df_mht[["Mental_Health_Status"]]).ravel() + 1
+df_encoded_mht["Mental_Health_Status"] = y_mht
 
 ######################### Result file of pre-processing #########################
 df_encoded_mht.to_csv("./database/mental_health_and_technology_usage_2024_encoded.csv", index=False)
 
 ######################### Separetion Data - Treining/Testing #########################
-# Supondo que a coluna alvo seja 'Mental_Health_Status'
-X_mht = df_encoded_mht.drop(columns=["Mental_Health_Status"])
-y_mht = df_encoded_mht["Mental_Health_Status"]
-
 # Divisão 80% treino / 20% teste
 X_train_mht, X_test_mht, y_train_mht, y_test_mht = train_test_split(
     X_mht, y_mht, test_size=0.2, random_state=42, shuffle=True, stratify=y_mht
