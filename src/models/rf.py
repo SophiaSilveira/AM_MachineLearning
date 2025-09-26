@@ -5,12 +5,19 @@ from sklearn.model_selection import GridSearchCV
 def runRF(X_train, X_test, y_train, y_test):
     # Grid de parâmetros
     param_grid_rf = {
-        "n_estimators": [200],        # número de árvores
-        "max_depth": [5],        # profundidade máxima
-        "min_samples_split": [4],       # mínimo de amostras para dividir
-        "min_samples_leaf": [1],        # mínimo de amostras em uma folha
-        "class_weight": [None], # lida com classes desbalanceadas
-        "max_features" : [None]
+        "n_estimators": [350], # número de árvores 500, 300
+        "class_weight": ["balanced_subsample"], # balanceamento de classes , "balanced"
+        "criterion": ["gini"], # critério de divisão "gini",
+
+        "min_samples_split": [7], # mínimo de amostras para dividir um nó
+
+        "max_depth": [None], # profundidade máxima 5
+        "max_leaf_nodes": [None], # número máximo de folhas
+        "max_samples": [0.9], # fração de amostras por árvore
+        "max_features": ["sqrt", "log2"], # número de features por divisão , , 1.0
+
+        "random_state": [42], # controle de aleatoriedade
+        "n_jobs": [-1] # número de jobs em paralelo
     }
 
     # Modelo base
@@ -20,7 +27,7 @@ def runRF(X_train, X_test, y_train, y_test):
     grid_rf = GridSearchCV(
         estimator=rf,
         param_grid=param_grid_rf,
-        cv=3,                      # número de folds ≤ menor classe
+        cv=5,                      # número de folds ≤ menor classe
         scoring="f1_weighted",
         n_jobs=-1
     )

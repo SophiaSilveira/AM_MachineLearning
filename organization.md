@@ -59,8 +59,8 @@
 ---
 
 ## Critérios de Avaliação
-- [ ] Escolha dos Dados – **1 ponto**
-- [ ] Pré-Processamento e Treinamento – **1 ponto**
+- [V] Escolha dos Dados – **1 ponto**
+- [V] Pré-Processamento e Treinamento – **1 ponto**
 - [ ] Interpretabilidade – **2 pontos**
 - [ ] Análise – **3 pontos**
 - [ ] Apresentação – **3 pontos**
