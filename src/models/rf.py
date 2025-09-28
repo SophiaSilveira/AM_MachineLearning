@@ -1,8 +1,12 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import GridSearchCV
+import numpy as np
+
 
 def runRF(X_train, X_test, y_train, y_test):
+    feature_names = list(X_train.columns)
+    class_names = np.unique(y_train).astype(str)
     # Grid de parâmetros
     param_grid_rf = {
         "n_estimators": [350], # número de árvores 500, 300

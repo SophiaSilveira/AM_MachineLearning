@@ -1,8 +1,15 @@
 from sklearn import tree
 from sklearn.metrics import classification_report, accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import GridSearchCV
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
+import seaborn as sns
+from sklearn import tree
 
 def runDT(X_train, X_test, y_train, y_test):
+    feature_names = list(X_train.columns)
+    class_names = np.unique(y_train).astype(str)
     # Definição da grade de parâmetros
 
     param_grid = {
@@ -55,3 +62,20 @@ def runDT(X_train, X_test, y_train, y_test):
     print(f"F1-score: {f1:.4f}")
     print("\nRelatório detalhado por classe:\n")
     print(classification_report(y_test, y_pred, zero_division=0))
+
+
+    plt.figure(figsize=(15, 8))
+    tree.plot_tree(best_model, 
+               max_depth=2,
+               feature_names=feature_names, 
+               class_names=class_names,
+               filled=True,
+               fontsize=10)
+    plt.title("Árvore de Decisão")
+    plt.show()
+
+    # Importância das features
+    importances = best_model.feature_importances_
+    sns.barplot(x=importances, y=feature_names)
+    plt.title("Importância das Features - Decision Tree")
+    plt.show()

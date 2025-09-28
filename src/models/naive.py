@@ -1,9 +1,12 @@
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
 from imblearn.over_sampling import SMOTE
+import numpy as np
 
 def runNaive(X_train, X_test, y_train, y_test):
+    feature_names = list(X_train.columns)
+    class_names = np.unique(y_train).astype(str)
     # 🔄 Balancear os dados com SMOTE (opcional)
     usar_smote = True
     if usar_smote:
@@ -31,16 +34,27 @@ def runNaive(X_train, X_test, y_train, y_test):
 
     # 📊 Avaliar no conjunto de teste
     y_pred = best_nb.predict(X_test)
-    acc = accuracy_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred, average='macro', zero_division=0)
-    precision = precision_score(y_test, y_pred, average='macro', zero_division=0)
-    recall = recall_score(y_test, y_pred, average='macro', zero_division=0)
+    
+    # Métricas
+    acuracia = accuracy_score(y_test, y_pred)
+    precisao = precision_score(y_test, y_pred, average="weighted", zero_division=0)
+    recall = recall_score(y_test, y_pred, average="weighted", zero_division=0)
+    f1 = f1_score(y_test, y_pred, average="weighted", zero_division=0)
 
-    print("\n=== MultinomialNB com GridSearch ===")
-    print(f"Acurácia:  {acc:.4f}")
-    print(f"F1 Score:  {f1:.4f}")
-    print(f"Precision: {precision:.4f}")
-    print(f"Recall:    {recall:.4f}")
+    # Impressão das métricas
+    print(f"Acurácia: {acuracia:.4f}")
+    print(f"Precisão: {precisao:.4f}")
+    print(f"Recall: {recall:.4f}")
+    print(f"F1-score: {f1:.4f}")
+    print("\nRelatório detalhado por classe:\n")
+    print(classification_report(y_test, y_pred, zero_division=0))
+
+    if hasattr(best_nb, "feature_log_prob_"):
+        probs = np.exp(best_nb.feature_log_prob_)
+        for i, cls in enumerate(class_names):
+            print(f"\nClasse {cls}:")
+            for f, feature in enumerate(feature_names):
+                print(f" - {feature}: prob condicional={probs[i][f]:.3f}")
 
 
 def testNauve(X_train, X_test, y_train, y_test):
